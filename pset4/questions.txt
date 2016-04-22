@@ -1,0 +1,103 @@
+                        BMP                 JPEG                PNG                     GIF
+Colors supported:       Billion+            ?                   Millions? (32bit)       256 indexed
+Supports animation:     No                  No                  No but see APNG, MNG    Yes
+Lossy:                  No compression      Lossy               Lossless                Lossless
+
+What is lossy vs lossless?
+Lossless: All lossless compression is based on the idea of breaking a file into a "smaller" form for transmission or storage and then putting it back together on the other end so it can be used again.
+Lossy: Simply eliminate "unnecessary" bits of information, tailoring the file so that it is smaller.
+
+4. 
+What happens, technically speaking, when a file is deleted on a FAT file system?
+
+When the operating system erases a FAT file, two
+things occur. First, the system modifies the filename’s first
+character in the file’s directory entry to signal that the file
+has been deleted and that the directory entry can be recycled.
+Second, the system moves all of the file’s FAT clusters
+to the hard drive’s list of free clusters. The actual file
+data is never touched. 
+- FAT means file allocation table
+- The FAT is a linked list of clusters that correspond
+to files.
+
+
+5.
+What can someone like you do to ensure (with high probability) that files you delete cannot be recovered?
+Use a tool to overwrite data with other data.
+
+
+6.  
+What’s stdint.h?
+Define integer types. Can change the width of an integer (usu 4 bytes I think).
+
+
+7.  
+What’s the point of using uint8_t, uint32_t, int32_t, and uint16_t in a program?
+Not sure. Maybe to be very specific as to how much space to use for your integers. And whether or not they need to be signed.
+
+8. 
+How many bytes is a BYTE, a DWORD, a LONG, and a WORD, respectively?
+
+BYTE: 1 byte, 8 bits unsigned
+
+DWORD: 4 bytes, 32 bits unsigned
+
+LONG: 4 bytes?, 32 bit signed integer
+
+WORD: 2 bytes, 16 bit unsigned
+
+
+9. 
+What (in ASCII, decimal, or hexadecimal) must the first two bytes of any BMP file be? (Leading bytes used to identify file formats (with high probability) are generally called "magic numbers.)"
+The character "B" then the character "M" in ASCII encoding
+
+
+10. What’s the difference between bfSize and biSize?
+[See](https://msdn.microsoft.com/en-us/library/windows/desktop/dd183376(v=vs.85).aspx)
+
+bfSize: The size in bytes of the file.
+biSize: The number of bytes required by the structure. (What does this really mean?)
+
+
+11. What does it mean if biHeight is negative?
+The sign of biHeight indicates whether the image is upside down or right side up.
+(BTW, biHeight is the height of the bitmap, in pixels.) 
+If biHeight is positive, the bitmap is a bottom-up DIB and its origin is the lower-left corner. If biHeight is negative, the bitmap is a top-down DIB and its origin is the upper-left corner.
+
+12. What field in BITMAPINFOHEADER specifies the BMP’s color depth (i.e., bits per pixel)?
+biBitCount
+
+
+13. Why might fopen return NULL in copy.c:37?
+There was an error opening the file.
+
+
+14. Why is the third argument to fread always 1 in our code?
+The third argument tells fread how many elements of data to read. We want one. One file header, one info header, one pixel.
+
+15. What value does copy.c:70 assign padding if bi.biWidth is 3?
+RGBTRIPLE is a custom data type of 3 bytes (I think.) See bmp.h.
+Not sure if the units here are bytes. Assuming they are:
+
+int padding =  (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
+            =  (4 - (3 * 3) % 4) % 4
+            =  3
+
+In the actual code, bi.biWidth is 8, which makes padding 0.
+
+
+16. What does fseek do?
+Change the position of the file pointer.
+Change the position of the place in the file where you're reading.
+In copy.c, it's used to skip over the padding:
+
+// Move the pointer named `inptr` forward by `padding` spaces, beginning at the current position.
+`fseek(inptr, padding, SEEK_CUR);`
+
+
+17. What is SEEK_CUR?
+The current position of the file pointer.
+
+
+18. TODO
