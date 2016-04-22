@@ -8,11 +8,14 @@ Linux. C. Compiling. Libraries. Types. Standard output.
 ## Week 2 - Complete
 Casting. Imprecision. Switches. Scope. Strings. Arrays. Cryptography.
 
-## Week 3
+## Week 3 - Complete
 Command-line arguments. Searching. Sorting. Bubble sort. Selection sort. Insertion sort. O. Ω .Θ. Recursion. Merge Sort.
 
-## Week 4
+## Week 4 - Partially complete
 Stack. Debugging. File I/O. Hexadecimal. Strings. Pointers. Dynamic memory allocation.
+
+Solved `whodunit` and `resize`.
+Yet to do `recover`.
 
 ## Week 5
 Heap. Buffer overflow. Linked lists. Hash tables. Tries. Trees. Stacks. Queues.
