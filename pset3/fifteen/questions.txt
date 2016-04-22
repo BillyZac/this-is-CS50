@@ -1,0 +1,9 @@
+questions.txt
+
+Computer Science 50
+Problem Set 3
+
+0. The board allows any dimensions between 3 x 3 and 9 x 9. 
+1. The board is represented by a 9x9 two-dimensional array.
+2. greet() is called to greet the player at game's start.
+3. Need to implement: init(), draw(), move(), won().
